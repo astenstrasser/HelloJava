@@ -4,7 +4,7 @@ public class TestingIfStatement {
 	public static void main(String[] args) {
 		System.out.println("In Eclipse, ctrl + space helps us complete some statements. "
 				+ "For println we write sysout and then use the shortcut!");
-
+		
 		int age = 19;
 		int numberOfAdults = 0;
 
