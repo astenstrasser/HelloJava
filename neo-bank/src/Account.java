@@ -3,7 +3,25 @@ public class Account {
 	int agency;
 	int accountNumber;
 	String accountHolder;
+	
+	// to set a start value for a property, just do it at class definition:
+	// int agency = 01; 
+	
+	public void deposit(double value) {
+		this.balance += value;
+	}
+	
+//	void is used here to inform that this method won't return anything.
+
+	public boolean withdrawal(double value) {
+		if (this.balance >= value) {
+			this.balance -= value;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }
 
-// to set a start value for a property, just do it at class definition:
-// int agency = 01; 
+
