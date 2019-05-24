@@ -4,3 +4,6 @@ public class Account {
 	int accountNumber;
 	String accountHolder;
 }
+
+// to set a start value for a property, just do it at class definition:
+// int agency = 01; 
