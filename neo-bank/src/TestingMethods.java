@@ -32,9 +32,16 @@ public class TestingMethods {
 		if (sarahsAccount.transfer(20.0, marleysAccount) 
 				&& sarahsAccount.balance == 280.00 
 				&& marleysAccount.balance == 700.00) {
-			System.out.println("transfer is working");
+			System.out.println("sucess transfer is working");
 		} else {
-			System.out.println("transfer is not working");
+			System.out.println("sucess transfer is not working");
+		}
+		
+		sarahsAccount.balance = 0;
+		if (sarahsAccount.transfer(1000.00, marleysAccount)) {
+			System.out.println("fail transfer case is not working");
+		} else {
+			System.out.println("fail transfer case is working");
 		}
 
 	}
