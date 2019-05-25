@@ -23,5 +23,8 @@ public class TestingConstructor {
 		numberOfBankAccounts = Account.getTotal();
 		System.out.println(numberOfBankAccounts);
 
+		Client martin = new Client("Martin Green", "888.049.660-03");
+		System.out.println(martin.getProfession());
+
 	}
 }
