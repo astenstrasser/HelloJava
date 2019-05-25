@@ -24,10 +24,21 @@ public class TestingBank {
 		Client lea = new Client();
 		leasAccount.accountHolder = lea;
 		leasAccount.accountHolder.clientName = "Lea Johnson";
+		leasAccount.deposit(250.00);
 
 //		Now it can be done!
 
 		System.out.println(leasAccount.accountHolder.clientName);
+
+		System.out.println("Using get balance method: " + leasAccount.getBalance());
+
+		leasAccount.setAccountNumber(550000);
+		leasAccount.setAgency(201);
+		
+		System.out.println("Leas Account Number: "+ leasAccount.getAccountNumber());
+		System.out.println("Leas Agency: "+ leasAccount.getAgency());
+
+		
 
 	}
 
