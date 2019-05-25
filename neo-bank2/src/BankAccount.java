@@ -1,9 +1,12 @@
 
 public class BankAccount {
 
-	double balance;
-	int agency;
-	int accountNumber;
+//	private properties can not be accessed from outside the class scope. 
+//	they need to be called with a method.
+
+	private double balance;
+	private int agency;
+	private int accountNumber;
 	Client accountHolder;
 
 //	this accountHolder is a reference of an object client.
@@ -28,6 +31,29 @@ public class BankAccount {
 			return true;
 		}
 		return false;
+	}
+	
+//	adding get and set methods
+	
+
+	public double getBalance() {
+		return this.balance;
+	}
+
+	public int getAgency() {
+		return this.agency;
+	}
+
+	public void setAgency(int agency) {
+		this.agency = agency;
+	}
+
+	public int getAccountNumber() {
+		return this.accountNumber;
+	}
+
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
 }
