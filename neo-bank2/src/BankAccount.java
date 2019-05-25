@@ -7,7 +7,7 @@ public class BankAccount {
 	private double balance;
 	private int agency;
 	private int accountNumber;
-	Client accountHolder;
+	private Client accountHolder;
 
 //	this accountHolder is a reference of an object client.
 //	we could also do something like: Client accountHolder = new Client();
@@ -32,9 +32,10 @@ public class BankAccount {
 		}
 		return false;
 	}
-	
-//	adding get and set methods
-	
+
+//	adding get and set methods.
+//	if we write "getProp." + ctrl+space, Eclipse will auto complete the get method.
+//	the same for set methods.
 
 	public double getBalance() {
 		return this.balance;
@@ -54,6 +55,14 @@ public class BankAccount {
 
 	public void setAccountNumber(int accountNumber) {
 		this.accountNumber = accountNumber;
+	}
+
+	public Client getAccountHolder() {
+		return this.accountHolder;
+	}
+
+	public void setAccountHolder(Client accountHolder) {
+		this.accountHolder = accountHolder;
 	}
 
 }
