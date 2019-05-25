@@ -13,6 +13,21 @@ public class Client {
 		this.profession = profession;
 	}
 
+//	we can also create a second constructor! 
+//	In this case we want to set profession as student always when there is no given profession
+
+//	public Client(String clientName, String taxNumber) {
+//		this.clientName = clientName;
+//		this.taxNumber = taxNumber;
+//		this.profession = "Student";
+//	}
+
+//	to avoid duplicate coding, we can do it as follows
+
+	public Client(String clientName, String taxNumber) {
+		this(clientName, taxNumber, "Student");
+	}
+
 	public String getClientName() {
 		return this.clientName;
 	}
