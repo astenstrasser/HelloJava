@@ -3,7 +3,10 @@ public class Employee {
 
 	private String name;
 	private String taxNumber;
-	private double salary;
+	protected double salary;
+	
+//	the protected modifier implicates that this attribute 
+//	is valid for this class and for children classes. 
 
 	public double getBonus() {
 		return this.salary * 0.1;

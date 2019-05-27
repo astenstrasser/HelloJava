@@ -7,7 +7,7 @@ public class TestingEmployees {
 		alice.setName("Alice Hausmann");
 		alice.setTaxNumber("500188");
 		alice.setSalary(3500);
-		System.out.println(alice.getBonus());
+		System.out.println("Alices's bonus is: " + alice.getBonus());
 	}
 
 }

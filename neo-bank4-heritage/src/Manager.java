@@ -5,6 +5,13 @@ public class Manager extends Employee {
 	
 	private int password;
 	
+	public double getBonus() {
+		return super.salary;
+	}
+	
+//	this.salary would make developers expect this attribute salary to be in class Manager.
+//	super.salary makes clear that this attribute is inherited from mother class.
+	
 	public void setPassword(int password) {
 		this.password = password;
 	}
