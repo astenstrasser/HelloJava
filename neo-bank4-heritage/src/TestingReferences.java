@@ -1,4 +1,4 @@
-//learning Java Polymorphism!
+//learning Java Polymorphism!g
 public class TestingReferences {
 
 	public static void main(String[] args) {
@@ -21,11 +21,15 @@ public class TestingReferences {
 
 		VideoEditor vE = new VideoEditor();
 		vE.setSalary(3500.00);
+		
+		Designer d1 = new Designer();
+		d1.setSalary(3500.00);
 
 		BonusControl controller = new BonusControl();
 		controller.register(m1);
 		controller.register(e1);
 		controller.register(vE);
+		controller.register(d1);
 
 		System.out.println(controller.getSum());
 
