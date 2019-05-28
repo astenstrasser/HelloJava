@@ -1,9 +1,6 @@
 
-public class Manager extends Employee {
+public class Manager extends AdminEmployee {
 
-//	Manager get the same methods as Employee
-	
-	private int password;
 	
 	
 //	The rule is: Managers get the usual bonus that every employee receives, added to their salary
@@ -19,12 +16,5 @@ public class Manager extends Employee {
 		this.password = password;
 	}
 
-	public boolean authenticatePassword(int password) {
-		if (this.password == password) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 }
