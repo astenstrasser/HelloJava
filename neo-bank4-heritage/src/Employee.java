@@ -1,5 +1,7 @@
+//when a class is abstract we can not create instances of this class.
+//it serves as a generic class. The instances should be created of children classes.
 
-public class Employee {
+public abstract class Employee {
 
 	private String name;
 	private String taxNumber;
@@ -11,9 +13,10 @@ public class Employee {
 //	We can use the getter getSalary() to access it from other files.  
 	private double salary;
 
-	public double getBonus() {
-		return this.salary * 0.05;
-	}
+	
+//	the getBonus method is implemented diferently in each children class. We don't need an implementation of it.
+//	But every children class needs!
+	public abstract double getBonus();
 
 	public void setName(String name) {
 		this.name = name;

@@ -8,7 +8,7 @@ public class Manager extends Employee {
 	
 //	The rule is: Managers get the usual bonus that every employee receives, added to their salary
 	public double getBonus() {
-		return super.getBonus() + super.getSalary();
+		return super.getSalary();
 	}
 //	calling the method using super is possible to call the method with the same name in mother class.
 //	If we would use salary as protected attribute, we could use super.salary to refer to it.

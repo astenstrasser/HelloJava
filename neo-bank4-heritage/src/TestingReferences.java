@@ -1,4 +1,4 @@
-//learning Java Polymorphism!g
+//learning Java Polymorphism!
 public class TestingReferences {
 
 	public static void main(String[] args) {
@@ -16,9 +16,6 @@ public class TestingReferences {
 //		A manager is an employee, but an employee is not a manager.
 //		One object can never change its classes. Only the reference can be changed.
 
-		Employee e1 = new Employee();
-		e1.setSalary(2000.00);
-
 		VideoEditor vE = new VideoEditor();
 		vE.setSalary(3500.00);
 		
@@ -27,7 +24,6 @@ public class TestingReferences {
 
 		BonusControl controller = new BonusControl();
 		controller.register(m1);
-		controller.register(e1);
 		controller.register(vE);
 		controller.register(d1);
 
