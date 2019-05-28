@@ -14,6 +14,12 @@ public class Account {
 		this.accountHolder = accountHolder;
 		this.balance = 0;
 	}
+	
+	public Account(int agency, int accountNumber) {
+		Account.total++;
+		this.agency = agency;
+		this.accountNumber = accountNumber;
+	}
 
 	public void deposit(double value) {
 		this.balance += value;
