@@ -12,7 +12,7 @@ public class Employee {
 	private double salary;
 
 	public double getBonus() {
-		return this.salary * 0.1;
+		return this.salary * 0.05;
 	}
 
 	public void setName(String name) {
