@@ -1,7 +1,7 @@
 
-public class Manager extends AdminEmployee {
-
+public class Manager extends Employee implements Authenticable {
 	
+	private int password;
 	
 //	The rule is: Managers get the usual bonus that every employee receives, added to their salary
 	public double getBonus() {
@@ -14,6 +14,14 @@ public class Manager extends AdminEmployee {
 	
 	public void setPassword(int password) {
 		this.password = password;
+	}
+
+	@Override
+	public boolean authenticatePassword(int password) {
+		if (this.password == password) {
+			return true;
+		}
+		return false;
 	}
 
 
