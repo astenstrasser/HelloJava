@@ -1,28 +1,33 @@
 
 public class Manager extends Employee implements Authenticable {
-	
+
 	private int password;
-	
-//	The rule is: Managers get the usual bonus that every employee receives, added to their salary
+	private Authenticator authenticator;
+
 	public double getBonus() {
 		return super.getSalary();
 	}
-//	calling the method using super is possible to call the method with the same name in mother class.
-//	If we would use salary as protected attribute, we could use super.salary to refer to it.
-//	this.salary would make developers expect this attribute salary to be in class Manager.
-//	super.salary makes clear that this attribute is inherited from mother class.
-	
+
+	public Manager() {
+		Authenticator authenticator = new Authenticator();
+		this.authenticator = authenticator;
+	}
+
+	@Override
 	public void setPassword(int password) {
-		this.password = password;
+		this.authenticator.setPassword(password);
 	}
 
 	@Override
 	public boolean authenticatePassword(int password) {
-		if (this.password == password) {
-			return true;
-		}
-		return false;
+		return this.authenticator.authenticatePassword(password);
 	}
 
+	@Override
+	public int getPassword() {
+		return this.password;
+	}
+	
+	
 
 }

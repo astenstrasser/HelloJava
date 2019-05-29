@@ -5,4 +5,6 @@ public abstract interface Authenticable{
 	
 	public boolean authenticatePassword(int password);
 	
+	public int getPassword();
+	
 }
