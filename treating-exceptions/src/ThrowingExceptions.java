@@ -11,7 +11,7 @@ public class ThrowingExceptions {
 		System.out.println("1. Method begins");
 		try {
 			secondMethod();
-		} catch (ArithmeticException | NullPointerException exception) {
+		} catch (ArithmeticException | NullPointerException | CustomException exception) {
 			String msg = exception.getMessage();
 			System.out.println("Message: " + msg);
 			exception.printStackTrace();
@@ -19,9 +19,9 @@ public class ThrowingExceptions {
 		System.out.println("1. Method ends");
 	}
 
-	public static void secondMethod() {
+	public static void secondMethod() throws CustomException{
 		System.out.println("2. Method begins");
-		throw new ArithmeticException("Customized Exception");
+		throw new CustomException("Customized Exception");
 //		System.out.println("2. Method ends");
 	}
 
