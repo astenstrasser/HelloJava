@@ -15,7 +15,13 @@ public class Flux {
 
 	public static void secondMethod() {
 		System.out.println("2. Method begins");
-		System.out.println("Inside 2. Method");
+		for (int i = 0; i <= 3; i++) {
+			try {
+				int a = 9/0;
+			} catch (ArithmeticException ae){
+				System.out.println("Catched a Arithmetic Exception");
+			}
+		}
 		System.out.println("2. Method ends");
 	}
 
