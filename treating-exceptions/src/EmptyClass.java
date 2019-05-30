@@ -1,7 +1,7 @@
 
 public class EmptyClass {
 
-	public void emptyMethod() {
+	public void emptyMethod() throws CustomException {
 		
 	}
 	
