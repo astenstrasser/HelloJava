@@ -9,7 +9,11 @@ public class TestingAccounts {
 		SavingsAccount sa = new SavingsAccount(980, 7654);
 		sa.deposit(100.00);
 
-		ca.transfer(20.00, sa);
+		try {
+			ca.transfer(20.00, sa);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 		System.out.println(ca.getBalance());
 		System.out.println(sa.getBalance());

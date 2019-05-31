@@ -25,20 +25,17 @@ public abstract class Account {
 		this.balance += value;
 	}
 
-	public boolean withdrawal(double value) {
-		if (this.balance >= value) {
-			this.balance -= value;
-			return true;
+	public void withdrawal(double value) throws NotEnoughMoneyException {
+		if (this.balance < value) {
+			throw new NotEnoughMoneyException("Not enough Money");
 		}
-		return false;
+		this.balance -= value; 
 	}
 
-	public boolean transfer(double value, Account destinationAccount) {
-		if (this.withdrawal(value)) {
-			destinationAccount.deposit(value);
-			return true;
-		}
-		return false;
+	public void transfer(double value, Account destinationAccount) throws NotEnoughMoneyException {
+		this.withdrawal(value);
+		destinationAccount.deposit(value);
+		
 	}
 
 	public double getBalance() {

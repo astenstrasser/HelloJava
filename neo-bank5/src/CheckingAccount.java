@@ -6,9 +6,9 @@ public class CheckingAccount extends Account implements Taxable {
 	}
 
 	@Override
-	public boolean withdrawal(double value) {
+	public void withdrawal(double value) throws NotEnoughMoneyException {
 		value += 0.5;
-		return super.withdrawal(value);
+		super.withdrawal(value);
 	}
 
 	@Override
