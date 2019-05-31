@@ -1,3 +1,4 @@
+package br.com.neobank.bank.model;
 
 public abstract class Account {
 

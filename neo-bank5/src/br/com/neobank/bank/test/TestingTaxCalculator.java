@@ -1,3 +1,9 @@
+package br.com.neobank.bank.test;
+
+import br.com.neobank.bank.model.CheckingAccount;
+import br.com.neobank.bank.model.LifeInsurance;
+import br.com.neobank.bank.model.StocksExchange;
+import br.com.neobank.bank.model.TaxCalculator;
 
 public class TestingTaxCalculator {
 	public static void main(String[] args) {
