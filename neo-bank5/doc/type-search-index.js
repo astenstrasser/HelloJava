@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"br.com.neobank.bank.model","l":"Account"},{"l":"All Classes","url":"allclasses-index.html"}]
