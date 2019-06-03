@@ -1,6 +1,6 @@
 package br.com.neobank.bank.model;
 
-/** 
+/**
  * Abstract Class that represents an generic account
  * 
  * @author Alexandra M. Stens.
@@ -8,7 +8,7 @@ package br.com.neobank.bank.model;
  */
 
 public abstract class Account {
-	
+
 	private double balance;
 	private int agency;
 	private int accountNumber;
@@ -16,7 +16,9 @@ public abstract class Account {
 	private static int total;
 
 	/**
-	 * Constructor method to initialize account object from agency number, account number and a client as account holder.
+	 * Constructor method to initialize account object from agency number, account
+	 * number and a client as account holder.
+	 * 
 	 * @param agency
 	 * @param accountNumber
 	 * @param accountHolder
@@ -28,9 +30,11 @@ public abstract class Account {
 		this.accountHolder = accountHolder;
 		this.balance = 0;
 	}
-	
+
 	/**
-	 * Constructor method to initialize account object from agency number and account number.
+	 * Constructor method to initialize account object from agency number and
+	 * account number.
+	 * 
 	 * @param agency
 	 * @param accountNumber
 	 */
@@ -42,6 +46,7 @@ public abstract class Account {
 
 	/**
 	 * Deposit given value in bank account.
+	 * 
 	 * @param value
 	 */
 	public void deposit(double value) {
@@ -49,8 +54,9 @@ public abstract class Account {
 	}
 
 	/**
-	 * Method to withdrawal money from an account.
-	 * Balance should be greater then withdrawal value.
+	 * Method to withdrawal money from an account. Balance should be greater then
+	 * withdrawal value.
+	 * 
 	 * @param value
 	 * @throws NotEnoughMoneyException
 	 */
@@ -58,11 +64,12 @@ public abstract class Account {
 		if (this.balance < value) {
 			throw new NotEnoughMoneyException("Not enough Money");
 		}
-		this.balance -= value; 
+		this.balance -= value;
 	}
 
 	/**
 	 * Transfer given value from account to destination account.
+	 * 
 	 * @param value
 	 * @param destinationAccount
 	 * @throws NotEnoughMoneyException
@@ -70,7 +77,12 @@ public abstract class Account {
 	public void transfer(double value, Account destinationAccount) throws NotEnoughMoneyException {
 		this.withdrawal(value);
 		destinationAccount.deposit(value);
-		
+
+	}
+
+	@Override
+	public String toString() {
+		return "Agency: " + this.agency + ", Account Number: " + this.accountNumber;
 	}
 
 	public double getBalance() {
@@ -104,11 +116,10 @@ public abstract class Account {
 	public Client getAccountHolder() {
 		return this.accountHolder;
 	}
-	
+
 	public void setAccountHolder(Client accountHolder) {
 		this.accountHolder = accountHolder;
 	}
-	
 
 	public static int getTotal() {
 		return total;
