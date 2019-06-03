@@ -3,7 +3,7 @@ package br.com.neobank.bank.test;
 public class TestingString {
 
 	public static void main(String[] args) {
-		
+
 //		trying String methods.
 
 //		replace
@@ -30,27 +30,27 @@ public class TestingString {
 //		form substrings giving positions
 		System.out.println(abc.substring(2));
 		System.out.println(abc.substring(0, 2));
-		
+
 //		length
 		System.out.println(abc.length());
-		for(int i = 0; i < abc.length(); i++) {
+		for (int i = 0; i < abc.length(); i++) {
 			System.out.println(abc.charAt(i));
 		}
-		
+
 //		is empty?
 		String empty = "";
 		System.out.println(empty.isEmpty());
-		
+
 //		trim
 		String notThatEmpty = " ";
 		empty = notThatEmpty.trim();
 		System.out.println(empty.isEmpty());
-		
+
 //		contains
 		name = "Stundent";
 		boolean contains = name.contains("und");
 		System.out.println(contains);
-		 
+
 //		Class StringBuilder:
 //		mutable object, more efficient then method .concat("string")
 		StringBuilder builder = new StringBuilder("This");
@@ -62,10 +62,7 @@ public class TestingString {
 		System.out.println(builder);
 		String aVeryLongText = builder.toString();
 		System.out.println(aVeryLongText);
-		
-		
 
-		
 	}
 
 }
