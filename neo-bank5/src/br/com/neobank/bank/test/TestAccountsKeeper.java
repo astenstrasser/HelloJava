@@ -1,13 +1,15 @@
 package br.com.neobank.bank.test;
 
+import org.junit.*;
+
 import br.com.neobank.bank.model.Account;
 import br.com.neobank.bank.model.AccountsKeeper;
 import br.com.neobank.bank.model.CheckingAccount;
 
-public class TestingAccountsKeeper {
+public class TestAccountsKeeper {
 
-	public static void main(String[] args) {
-
+	@Test
+	public void SizeFunction() {
 		AccountsKeeper accountsKeeper = new AccountsKeeper();
 		Account c1 = new CheckingAccount(21, 4244);
 		Account c2 = new CheckingAccount(12, 4321);
@@ -16,13 +18,18 @@ public class TestingAccountsKeeper {
 		accountsKeeper.add(c2);
 
 		int size = accountsKeeper.size();
-		System.out.println(size);
+		Assert.assertEquals(2, size);
+	}
+
+	@Test
+	public void mustBeCapableToUseMethodsOnReferencesFromArray() {
+		AccountsKeeper accountsKeeper = new AccountsKeeper();
+		Account c1 = new CheckingAccount(21, 4244);
+
+		accountsKeeper.add(c1);
 
 		Account ref = accountsKeeper.getReference(0);
-		System.out.println(ref.getAccountNumber());
-		
-		
-
-	};
+		Assert.assertEquals(4244, ref.getAccountNumber());
+	}
 
 }
