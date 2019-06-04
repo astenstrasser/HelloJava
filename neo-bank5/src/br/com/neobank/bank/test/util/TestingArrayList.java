@@ -41,6 +41,13 @@ public class TestingArrayList {
 		for (Account account : list) {
 			System.out.println(account);
 		}
+		
+		
+		Account c5 = new CheckingAccount(12, 4444);
+		Account c6 = new CheckingAccount(12, 4444);
+		
+		boolean same = c5.equals(c6);
+		System.out.println(same);
 
 	}
 

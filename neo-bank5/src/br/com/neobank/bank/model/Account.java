@@ -124,5 +124,20 @@ public abstract class Account {
 	public static int getTotal() {
 		return total;
 	}
+	
+	@Override
+	public boolean equals(Object ref) {
+		Account accountRef = (Account) ref;
+		
+		if (this.accountNumber != accountRef.accountNumber) {
+			return false;
+		}
+		
+		if (this.agency != accountRef.agency) {
+			return false;
+		}
+		
+		return true;
+	}
 
 }
