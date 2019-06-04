@@ -48,6 +48,50 @@ public class TestAuctioneer {
 	}
 
 	@Test
+	public void mustEvaluateRandomBids() {
+		User rob = new User("Rob");
+		User karen = new User("Karen");
+		User louise = new User("Louise");
+
+		Auction auction = new Auction("Dog Outfit");
+
+		auction.proposes(new Bid(rob, 50));
+		auction.proposes(new Bid(karen, 10));
+		auction.proposes(new Bid(louise, 80));
+		auction.proposes(new Bid(rob, 5));
+		auction.proposes(new Bid(karen, 70));
+		auction.proposes(new Bid(louise, 15));
+
+		Auctioneer auctioneer = new Auctioneer();
+		auctioneer.evaluate(auction);
+
+		assertEquals(80, auctioneer.getHighestBid(), 0.00001);
+		assertEquals(5, auctioneer.getLowestBid(), 0.00001);
+	}
+
+	@Test
+	public void mustEvaluateDescendingBids() {
+		User rob = new User("Rob");
+		User karen = new User("Karen");
+		User louise = new User("Louise");
+
+		Auction auction = new Auction("Dog Outfit");
+
+		auction.proposes(new Bid(rob, 50));
+		auction.proposes(new Bid(karen, 45));
+		auction.proposes(new Bid(louise, 40));
+		auction.proposes(new Bid(rob, 35));
+		auction.proposes(new Bid(karen, 30));
+		auction.proposes(new Bid(louise, 25));
+
+		Auctioneer auctioneer = new Auctioneer();
+		auctioneer.evaluate(auction);
+
+		assertEquals(50, auctioneer.getHighestBid(), 0.00001);
+		assertEquals(25, auctioneer.getLowestBid(), 0.00001);
+	}
+
+	@Test
 	public void mustFindThreeHighestBids() {
 		User karen = new User("Karen");
 		User louise = new User("Louise");
@@ -67,6 +111,37 @@ public class TestAuctioneer {
 		assertEquals(500, highests.get(0).getValue(), 0.00001);
 		assertEquals(450, highests.get(1).getValue(), 0.00001);
 		assertEquals(350, highests.get(2).getValue(), 0.00001);
+	}
+
+	@Test
+	public void mustReturnTwoHighestBidsIfThereWereOnlyTwoBids() {
+		User karen = new User("Karen");
+		User louise = new User("Louise");
+		Auction auction = new Auction("RiksTeck Laptop");
+
+		auction.proposes(new Bid(karen, 450));
+		auction.proposes(new Bid(louise, 350));
+
+		Auctioneer auctioneer = new Auctioneer();
+		auctioneer.evaluate(auction);
+
+		List<Bid> highests = auctioneer.get3Highests();
+
+		assertEquals(2, highests.size(), 0.00001);
+		assertEquals(450, highests.get(0).getValue(), 0.00001);
+		assertEquals(350, highests.get(1).getValue(), 0.00001);
+	}
+
+	@Test
+	public void mustReturnEmptyListWhenThereIsNoBid() {
+		Auction auction = new Auction("RiksTeck Laptop");
+
+		Auctioneer auctioneer = new Auctioneer();
+		auctioneer.evaluate(auction);
+
+		List<Bid> highests = auctioneer.get3Highests();
+
+		assertEquals(0, highests.size(), 0.00001);
 	}
 
 }
