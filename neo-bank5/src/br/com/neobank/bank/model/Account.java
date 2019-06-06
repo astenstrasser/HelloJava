@@ -82,7 +82,8 @@ public abstract class Account {
 
 	@Override
 	public String toString() {
-		return "Agency: " + this.agency + ", Account Number: " + this.accountNumber;
+		return "Agency: " + this.agency + ", Account Number: " + this.accountNumber + ", Account Holder: "+this.accountHolder.getClientName();
+		
 	}
 
 	public double getBalance() {
