@@ -1,6 +1,7 @@
 package br.com.neobank.bank.test.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -43,12 +44,26 @@ public class TestingStrComparator {
 		list.add(cc3);
 		list.add(cc4);
 
-		for (Account account : list) {
-			System.out.println(account);
-		}
+		list.forEach(account -> System.out.println(account));
 
-		list.sort(new AccountHolderComparator()); // já deixando mais enxuto
+//		with comparator:
+//		list.sort(new Comparator<Account>() {
+//			@Override
+//			public int compare(Account a1, Account a2) {
+//				String nomeC1 = a1.getAccountHolder().getClientName();
+//				String nomeC2 = a2.getAccountHolder().getClientName();
+//				return nomeC1.compareTo(nomeC2);
+//			}
+//		});
 
+//		using lambda:
+		list.sort( ( a1, a2)-> {
+				String nomeC1 = a1.getAccountHolder().getClientName();
+				String nomeC2 = a2.getAccountHolder().getClientName();
+				return nomeC1.compareTo(nomeC2); 
+			}
+		);
+		
 		System.out.println("---------");
 
 		for (Account account : list) {
@@ -57,14 +72,4 @@ public class TestingStrComparator {
 
 	}
 
-}
-
-class AccountHolderComparator implements Comparator<Account> {
-
-	@Override
-	public int compare(Account a1, Account a2) {
-		String nomeC1 = a1.getAccountHolder().getClientName();
-		String nomeC2 = a2.getAccountHolder().getClientName();
-		return nomeC1.compareTo(nomeC2);
-	}
 }
