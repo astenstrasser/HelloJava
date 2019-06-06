@@ -7,7 +7,7 @@ package br.com.neobank.bank.model;
  * @version 1.0
  */
 
-public abstract class Account {
+public abstract class Account implements Comparable<Account> {
 
 	private double balance;
 	private int agency;
@@ -82,8 +82,8 @@ public abstract class Account {
 
 	@Override
 	public String toString() {
-		return "Agency: " + this.agency + ", Account Number: " + this.accountNumber + ", Account Holder: "+this.accountHolder.getClientName();
-		
+		return "Agency: " + this.agency + ", Account Number: " + this.accountNumber;
+
 	}
 
 	public double getBalance() {
@@ -125,20 +125,25 @@ public abstract class Account {
 	public static int getTotal() {
 		return total;
 	}
-	
+
 	@Override
 	public boolean equals(Object ref) {
 		Account accountRef = (Account) ref;
-		
+
 		if (this.accountNumber != accountRef.accountNumber) {
 			return false;
 		}
-		
+
 		if (this.agency != accountRef.agency) {
 			return false;
 		}
-		
+
 		return true;
+	}
+
+	@Override
+	public int compareTo(Account o) {
+		return Double.compare(this.balance, o.balance);
 	}
 
 }
