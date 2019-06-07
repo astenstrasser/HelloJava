@@ -92,46 +92,46 @@ public class AuctionTest {
 		auction.proposes(b10);
 		Bid b11 = new Bid(starWarsFan, 10000);
 		auction.proposes(b11);
-		
+
 		Auctioneer auctioneer = new Auctioneer();
 		auctioneer.evaluate(auction);
-		
+
 		assertEquals(10, auction.getBids().size());
-		assertEquals(490, auction.getBids().get(auction.getBids().size() -1).getValue(), 0.00001);
-			
-		}
-	
+		assertEquals(490, auction.getBids().get(auction.getBids().size() - 1).getValue(), 0.00001);
+
+	}
+
 	@Test
 	public void mustBeCapableToDoubleBids() {
 		Auction auction = new Auction("Stormtrooper Outfit");
 		User starWarsFan = new User("Star wars fan");
 		User notThatFan = new User("Not that fan");
-		
+
 		Bid b1 = new Bid(starWarsFan, 150);
 		auction.proposes(b1);
 		Bid b2 = new Bid(notThatFan, 200);
 		auction.proposes(b2);
-		
+
 		auction.doubleLastBid(starWarsFan);
-		
+
 		Auctioneer auctioneer = new Auctioneer();
 		auctioneer.evaluate(auction);
-		
+
 		assertEquals(3, auction.getBids().size());
 		assertEquals(300, auction.getBids().get(2).getValue(), 0.000001);
 	}
-	
+
 	@Test
 	public void doesNothingWhenUserHasNoBidMadeAndDoubles() {
 		Auction auction = new Auction("Stormtrooper Outfit");
-	
+
 		User johnDoe = new User("John Doe");
-		
+
 		auction.doubleLastBid(johnDoe);
-		
+
 		Auctioneer auctioneer = new Auctioneer();
 		auctioneer.evaluate(auction);
-		
+
 		assertEquals(0, auction.getBids().size());
 	}
 
