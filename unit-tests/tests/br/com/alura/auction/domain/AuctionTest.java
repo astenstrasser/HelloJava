@@ -2,32 +2,40 @@ package br.com.alura.auction.domain;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.alura.auction.builder.TestAuctionBuilder;
 import br.com.alura.auction.service.Auctioneer;
 
 public class AuctionTest {
 
 	private Auctioneer auctioneer;
-	private Auction auction;
 	private User starWarsFan;
 	private User notThatFan;
+	private TestAuctionBuilder testAuctionBuilder;
 
 	@Before
 	public void setUp() {
 		this.auctioneer = new Auctioneer();
-		this.auction = new Auction("Stormtrooper Outfit");
 		this.starWarsFan = new User("Star wars fan");
 		this.notThatFan = new User("Not that fan");
+		this.testAuctionBuilder = new TestAuctionBuilder();
+	}
 
+	@After
+	public void finish() {
+//		could be used to close files, database, etc.
 	}
 
 	@Test
 	public void mustAccept1BidProposal() {
 
-		Bid b1 = new Bid(starWarsFan, 200);
-		auction.proposes(b1);
+		Auction auction = new TestAuctionBuilder()
+				.of("Stormtrooper Outfit")
+				.bid(starWarsFan, 200)
+				.construct();
 
 		auctioneer.evaluate(auction);
 
@@ -39,11 +47,11 @@ public class AuctionTest {
 	@Test
 	public void mustAcceptMoreBidsProposals() {
 
-		Bid b1 = new Bid(starWarsFan, 1000);
-		auction.proposes(b1);
-
-		Bid b2 = new Bid(notThatFan, 50);
-		auction.proposes(b2);
+		Auction auction = new TestAuctionBuilder()
+				.of("Stormtrooper Outfit")
+				.bid(starWarsFan, 1000)
+				.bid(notThatFan, 50)
+				.construct();
 
 		auctioneer.evaluate(auction);
 
@@ -56,10 +64,11 @@ public class AuctionTest {
 	@Test
 	public void mustReject2BidsInSequenceFromSameUser() {
 
-		Bid b1 = new Bid(starWarsFan, 1000);
-		auction.proposes(b1);
-		Bid b2 = new Bid(starWarsFan, 5000);
-		auction.proposes(b2);
+		Auction auction =  new TestAuctionBuilder() 
+				.of("Stormtrooper Outfit")
+				.bid(starWarsFan, 1000)
+				.bid(starWarsFan, 5000)
+				.construct();
 
 		auctioneer.evaluate(auction);
 
@@ -69,29 +78,21 @@ public class AuctionTest {
 
 	@Test
 	public void MustNotAcceptMoreThan5BidsProUser() {
-
-		Bid b1 = new Bid(starWarsFan, 100);
-		auction.proposes(b1);
-		Bid b2 = new Bid(notThatFan, 120);
-		auction.proposes(b2);
-		Bid b3 = new Bid(starWarsFan, 200);
-		auction.proposes(b3);
-		Bid b4 = new Bid(notThatFan, 200);
-		auction.proposes(b4);
-		Bid b5 = new Bid(starWarsFan, 300);
-		auction.proposes(b5);
-		Bid b6 = new Bid(notThatFan, 310);
-		auction.proposes(b6);
-		Bid b7 = new Bid(starWarsFan, 400);
-		auction.proposes(b7);
-		Bid b8 = new Bid(notThatFan, 400);
-		auction.proposes(b8);
-		Bid b9 = new Bid(starWarsFan, 500);
-		auction.proposes(b9);
-		Bid b10 = new Bid(notThatFan, 490);
-		auction.proposes(b10);
-		Bid b11 = new Bid(starWarsFan, 10000);
-		auction.proposes(b11);
+		
+		Auction auction =  new TestAuctionBuilder()
+				.of("Stormtrooper Outfit")
+				.bid(starWarsFan, 100)
+				.bid(notThatFan, 120)
+				.bid(starWarsFan, 200)
+				.bid(notThatFan, 200)
+				.bid(starWarsFan, 300)
+				.bid(notThatFan, 310)
+				.bid(starWarsFan, 400)
+				.bid(notThatFan, 400)
+				.bid(starWarsFan, 500)
+				.bid(notThatFan, 490)
+				.bid(starWarsFan, 10000)
+				.construct();
 
 		auctioneer.evaluate(auction);
 
@@ -103,11 +104,12 @@ public class AuctionTest {
 	@Test
 	public void mustBeCapableToDoubleBids() {
 
-		Bid b1 = new Bid(starWarsFan, 150);
-		auction.proposes(b1);
-		Bid b2 = new Bid(notThatFan, 200);
-		auction.proposes(b2);
-
+		Auction auction =  new TestAuctionBuilder()
+				.of("Stormtrooper Outfit")
+				.bid(starWarsFan, 150)
+				.bid(notThatFan, 200)
+				.construct();
+		
 		auction.doubleLastBid(starWarsFan);
 
 		auctioneer.evaluate(auction);
@@ -119,8 +121,13 @@ public class AuctionTest {
 	@Test
 	public void doesNothingWhenUserHasNoBidMadeAndDoubles() {
 
+		
 		User johnDoe = new User("John Doe");
 
+		Auction auction =  new TestAuctionBuilder()
+				.of("Stormtrooper Outfit")
+				.construct();
+		
 		auction.doubleLastBid(johnDoe);
 
 		auctioneer.evaluate(auction);
