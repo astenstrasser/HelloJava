@@ -1,11 +1,11 @@
-package br.com.alura.mathematics.test;
+package br.com.alura.randomChallanges;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-import br.com.alura.mathematics.CrazyMath;
+import br.com.alura.randomChallanges.CrazyMath;
 
-public class TestCrazyMath {
+public class CrazyMathTest {
 
 	@Test
 	public void biggerThan30() {

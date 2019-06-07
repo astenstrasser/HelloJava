@@ -1,4 +1,4 @@
-package br.com.alura.mathematics;
+package br.com.alura.randomChallanges;
 
 public class CrazyMath {
 
