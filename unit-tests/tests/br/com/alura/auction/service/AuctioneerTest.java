@@ -1,4 +1,4 @@
-package br.com.alura.auction.service.tests;
+package br.com.alura.auction.service;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,9 +9,8 @@ import org.junit.Test;
 import br.com.alura.auction.domain.Auction;
 import br.com.alura.auction.domain.Bid;
 import br.com.alura.auction.domain.User;
-import br.com.alura.auction.service.Auctioneer;
 
-public class TestAuctioneer {
+public class AuctioneerTest {
 
 //	using JUnit: the test must be public void, not static, no inputs.
 	@Test
