@@ -14,14 +14,12 @@ public class AuctionTest {
 	private Auctioneer auctioneer;
 	private User starWarsFan;
 	private User notThatFan;
-	private TestAuctionBuilder testAuctionBuilder;
 
 	@Before
 	public void setUp() {
 		this.auctioneer = new Auctioneer();
 		this.starWarsFan = new User("Star wars fan");
 		this.notThatFan = new User("Not that fan");
-		this.testAuctionBuilder = new TestAuctionBuilder();
 	}
 
 	@After
@@ -126,13 +124,14 @@ public class AuctionTest {
 
 		Auction auction =  new TestAuctionBuilder()
 				.of("Stormtrooper Outfit")
+				.bid(starWarsFan, 500.00)
 				.construct();
 		
 		auction.doubleLastBid(johnDoe);
 
 		auctioneer.evaluate(auction);
 
-		assertEquals(0, auction.getBids().size());
+		assertEquals(1, auction.getBids().size());
 	}
 
 }
