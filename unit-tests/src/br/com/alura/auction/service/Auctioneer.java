@@ -15,6 +15,10 @@ public class Auctioneer {
 	private List<Bid> highests;
 
 	public void evaluate(Auction auction) {
+		if (auction.getBids().size() == 0) {
+			throw new RuntimeException("No bids in this Auction");
+		}
+		
 		for (Bid bid : auction.getBids()) {
 			if (bid.getValue() > highestBid) {
 				highestBid = bid.getValue();
