@@ -7,6 +7,9 @@ public class Bid {
 	
 	public Bid(User user, double value) {
 		this.user = user;
+		if (value <= 0) {
+			throw new IllegalArgumentException("Invalid bid value");
+		}
 		this.value = value;
 	}
 	
