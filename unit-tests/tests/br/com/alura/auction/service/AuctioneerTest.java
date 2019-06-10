@@ -4,29 +4,40 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import br.com.alura.auction.builder.TestAuctionBuilder;
 import br.com.alura.auction.domain.Auction;
 import br.com.alura.auction.domain.Bid;
 import br.com.alura.auction.domain.User;
 
 public class AuctioneerTest {
 
+	private User rob;
+	private User karen;
+	private User louise;
+	private Auctioneer auctioneer;
+	
+	@Before
+	public void setUpTest() {
+		this.rob = new User("Rob");
+		this.karen = new User("Karen");
+		this.louise = new User("Louise");
+		this.auctioneer = new Auctioneer();
+	}
+	
 //	using JUnit: the test must be public void, not static, no inputs.
 	@Test
 	public void mustEvaluateBidsInAscendingOrder() {
 
-		User rob = new User("Rob");
-		User karen = new User("Karen");
-		User louise = new User("Louise");
+		Auction auction = new TestAuctionBuilder()
+				.of("Brand new Playstation 4")
+				.bid(rob, 250)
+				.bid(karen, 300)
+				.bid(louise, 400)
+				.construct();
 
-		Auction auction = new Auction("Brand new Playstation 4");
-
-		auction.proposes(new Bid(rob, 250));
-		auction.proposes(new Bid(karen, 300));
-		auction.proposes(new Bid(louise, 400));
-
-		Auctioneer auctioneer = new Auctioneer();
 		auctioneer.evaluate(auction);
 
 		assertEquals(400, auctioneer.getHighestBid(), 0.00001);
@@ -36,10 +47,12 @@ public class AuctioneerTest {
 
 	@Test
 	public void mustEvaluateAuctionsWithOneBid() {
-		User rob = new User("Rob");
-		Auction auction = new Auction("SmartHome system");
-		auction.proposes(new Bid(rob, 250));
-		Auctioneer auctioneer = new Auctioneer();
+
+		Auction auction = new TestAuctionBuilder()
+				.of("SmartHome system")
+				.bid(rob, 250)
+				.construct();
+		
 		auctioneer.evaluate(auction);
 
 		assertEquals(250, auctioneer.getHighestBid(), 0.00001);
@@ -48,20 +61,17 @@ public class AuctioneerTest {
 
 	@Test
 	public void mustEvaluateRandomBids() {
-		User rob = new User("Rob");
-		User karen = new User("Karen");
-		User louise = new User("Louise");
 
-		Auction auction = new Auction("Dog Outfit");
+		Auction auction = new TestAuctionBuilder()
+				.of("Dog Outfit")
+				.bid(rob, 50)
+				.bid(karen, 10)
+				.bid(louise, 80)
+				.bid(rob, 5)
+				.bid(karen, 70)
+				.bid(louise, 15)
+				.construct();
 
-		auction.proposes(new Bid(rob, 50));
-		auction.proposes(new Bid(karen, 10));
-		auction.proposes(new Bid(louise, 80));
-		auction.proposes(new Bid(rob, 5));
-		auction.proposes(new Bid(karen, 70));
-		auction.proposes(new Bid(louise, 15));
-
-		Auctioneer auctioneer = new Auctioneer();
 		auctioneer.evaluate(auction);
 
 		assertEquals(80, auctioneer.getHighestBid(), 0.00001);
@@ -70,20 +80,17 @@ public class AuctioneerTest {
 
 	@Test
 	public void mustEvaluateDescendingBids() {
-		User rob = new User("Rob");
-		User karen = new User("Karen");
-		User louise = new User("Louise");
+	
+		Auction auction = new TestAuctionBuilder()
+				.of("Dog Outfit")
+				.bid(rob, 50)
+				.bid(karen, 45)
+				.bid(louise, 40)
+				.bid(rob, 35)
+				.bid(karen, 30)
+				.bid(louise, 25)
+				.construct();
 
-		Auction auction = new Auction("Dog Outfit");
-
-		auction.proposes(new Bid(rob, 50));
-		auction.proposes(new Bid(karen, 45));
-		auction.proposes(new Bid(louise, 40));
-		auction.proposes(new Bid(rob, 35));
-		auction.proposes(new Bid(karen, 30));
-		auction.proposes(new Bid(louise, 25));
-
-		Auctioneer auctioneer = new Auctioneer();
 		auctioneer.evaluate(auction);
 
 		assertEquals(50, auctioneer.getHighestBid(), 0.00001);
@@ -92,16 +99,15 @@ public class AuctioneerTest {
 
 	@Test
 	public void mustFindThreeHighestBids() {
-		User karen = new User("Karen");
-		User louise = new User("Louise");
-		Auction auction = new Auction("Supermagnetic Hoverboard");
+		
+		Auction auction = new TestAuctionBuilder()
+				.of("Supermagnetic Hoverboard")
+				.bid(karen, 450)
+				.bid(louise, 350)
+				.bid(louise, 200)
+				.bid(karen, 500)
+				.construct();
 
-		auction.proposes(new Bid(karen, 450));
-		auction.proposes(new Bid(louise, 350));
-		auction.proposes(new Bid(louise, 200));
-		auction.proposes(new Bid(karen, 500));
-
-		Auctioneer auctioneer = new Auctioneer();
 		auctioneer.evaluate(auction);
 
 		List<Bid> highests = auctioneer.get3Highests();
@@ -114,14 +120,13 @@ public class AuctioneerTest {
 
 	@Test
 	public void mustReturnTwoHighestBidsIfThereWereOnlyTwoBids() {
-		User karen = new User("Karen");
-		User louise = new User("Louise");
-		Auction auction = new Auction("RiksTeck Laptop");
+	
+		Auction auction = new TestAuctionBuilder()
+				.of("RiksTeck Laptop")
+				.bid(karen, 450)
+				.bid(louise, 350)
+				.construct();
 
-		auction.proposes(new Bid(karen, 450));
-		auction.proposes(new Bid(louise, 350));
-
-		Auctioneer auctioneer = new Auctioneer();
 		auctioneer.evaluate(auction);
 
 		List<Bid> highests = auctioneer.get3Highests();
@@ -131,16 +136,15 @@ public class AuctioneerTest {
 		assertEquals(350, highests.get(1).getValue(), 0.00001);
 	}
 
-	@Test
-	public void mustReturnEmptyListWhenThereIsNoBid() {
-		Auction auction = new Auction("RiksTeck Laptop");
-
-		Auctioneer auctioneer = new Auctioneer();
+	@Test(expected=RuntimeException.class)
+	public void mustRaiseExceptiontWhenThereIsNoBid() {
+		Auction auction = new TestAuctionBuilder()
+				.of("RiksTeck Laptop")
+				.construct();
+				
 		auctioneer.evaluate(auction);
 
-		List<Bid> highests = auctioneer.get3Highests();
-
-		assertEquals(0, highests.size(), 0.00001);
 	}
+	
 
 }
