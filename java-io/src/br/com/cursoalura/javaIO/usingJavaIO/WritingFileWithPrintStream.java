@@ -2,7 +2,6 @@ package br.com.cursoalura.javaIO.usingJavaIO;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 
 public class WritingFileWithPrintStream {
 
@@ -18,7 +17,7 @@ public class WritingFileWithPrintStream {
 		
 //		could also use PrintWriter
 //		
-//		PrintWriter pw = new printWriter("text.txt");
+//		PrintWriter pw = new printWriter("text.txt", "UTF-8");
 //		
 //		pw.println("Sing us a song");
 //		pw.print("You are the piano man.");
