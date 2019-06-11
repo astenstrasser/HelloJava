@@ -12,7 +12,7 @@ public class ReadingLines {
 	public static void main(String[] args) throws IOException {
 
 		InputStream fileInputStream = new FileInputStream("text-file.txt");
-		Reader inputStreamReader = new InputStreamReader(fileInputStream);
+		Reader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
 		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
 		String line = bufferedReader.readLine();
