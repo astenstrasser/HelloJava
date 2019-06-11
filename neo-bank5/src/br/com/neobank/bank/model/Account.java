@@ -1,5 +1,7 @@
 package br.com.neobank.bank.model;
 
+import java.io.Serializable;
+
 /**
  * Abstract Class that represents an generic account
  * 
@@ -7,7 +9,7 @@ package br.com.neobank.bank.model;
  * @version 1.0
  */
 
-public abstract class Account implements Comparable<Account> {
+public abstract class Account implements Comparable<Account>, Serializable{
 
 	private double balance;
 	private int agency;

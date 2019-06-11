@@ -1,6 +1,8 @@
 package br.com.neobank.bank.model;
 
-public class Client {
+import java.io.Serializable;
+
+public class Client implements Serializable{
 
 	private String clientName;
 	private String taxNumber;
