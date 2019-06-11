@@ -5,7 +5,9 @@ import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
@@ -14,19 +16,19 @@ public class CopyingFile {
 
 	public static void main(String[] args) throws IOException {
 
-		FileInputStream fis = new FileInputStream("text-file.txt");
+		InputStream fis = new FileInputStream("text-file.txt");
 		Reader reader = new InputStreamReader(fis);
 		BufferedReader buffReader = new BufferedReader(reader);
 
-		FileOutputStream fos = new FileOutputStream("my-copy.txt");
+		OutputStream fos = new FileOutputStream("text-file2.txt");
 		Writer writer = new OutputStreamWriter(fos);
 		BufferedWriter buffWriter = new BufferedWriter(writer);
 
 		String line = buffReader.readLine();
-
-		while (line != null) {
+		while (line != null && !line.isEmpty()) {
 			buffWriter.write(line);
 			buffWriter.newLine();
+			buffWriter.flush();
 			line = buffReader.readLine();
 		}
 
