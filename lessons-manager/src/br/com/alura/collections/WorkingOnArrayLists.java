@@ -2,6 +2,10 @@ package br.com.alura.collections;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import br.com.alura.lesson.manager.model.Lesson;
 
 public class WorkingOnArrayLists {
 
@@ -37,6 +41,24 @@ public class WorkingOnArrayLists {
 
 		Collections.sort(dogs);
 		System.out.println(dogs);
+	
+		
+		Lesson c3 = new Lesson("Java 1", 20);
+		Lesson c2 = new Lesson("Objects and Classes", 35);
+		Lesson c1 = new Lesson("TDD in Java", 25);
+		List<Lesson> lessons = new ArrayList<Lesson>();
+		lessons.add(c1);
+		lessons.add(c2);
+		lessons.add(c3);
+		
+		
+//		Comparing by duration
+		lessons.sort(Comparator.comparing(Lesson::getDuration));
+		
+		System.out.println(lessons);
+	
+	
+	
 	}
 
 }
