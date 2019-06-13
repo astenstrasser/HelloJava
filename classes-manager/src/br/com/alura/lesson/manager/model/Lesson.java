@@ -1,11 +1,11 @@
-package br.com.alura.aluraclasses.manager.model;
+package br.com.alura.lesson.manager.model;
 
-public class AluraClass implements Comparable<AluraClass>{
+public class Lesson implements Comparable<Lesson>{
 
 	private String name;
 	private int duration;
 
-	public AluraClass(String name, int duration) {
+	public Lesson(String name, int duration) {
 		this.name = name;
 		this.duration = duration;
 	}
@@ -24,8 +24,8 @@ public class AluraClass implements Comparable<AluraClass>{
 	}
 
 	@Override
-	public int compareTo(AluraClass otherClass) {
-		return this.getName().compareTo(otherClass.getName());
+	public int compareTo(Lesson otherLesson) {
+		return this.getName().compareTo(otherLesson.getName());
 	}
 
 }
