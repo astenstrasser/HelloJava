@@ -27,9 +27,22 @@ public class Course {
 	public List<Lesson> getLessons() {
 		return Collections.unmodifiableList(lessons);
 	}
-	
+
 	public void add(Lesson lesson) {
 		this.lessons.add(lesson);
+	}
+
+	public int getDuration() {
+		int duration = 0;
+		for (Lesson lesson : lessons) {
+			duration += lesson.getDuration();
+		}
+		return duration;
+	}
+	
+	@Override
+	public String toString() {
+		return "[Course: "+ this.name + " | Teacher: "+this.teacher+"]";
 	}
 
 }
