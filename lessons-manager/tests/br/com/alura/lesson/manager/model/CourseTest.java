@@ -1,5 +1,7 @@
 package br.com.alura.lesson.manager.model;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +19,11 @@ public class CourseTest {
 	@Test(expected = UnsupportedOperationException.class)
 	public void mustNotBeAbleToModifyList() {
 		this.course.getLessons().add(new Lesson("Unmodifiable?", 0));
+	}
+	
+	@Test
+	public void courseDuration() {
+		assertEquals(this.course.getDuration(), 43);
 	}
 	
 }
