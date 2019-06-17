@@ -1,9 +1,12 @@
 package br.com.alura.lesson.manager.model;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class Course {
@@ -12,6 +15,7 @@ public class Course {
 	private String teacher;
 	private List<Lesson> lessons = new LinkedList<Lesson>();
 	private Set<Student> students = new HashSet<Student>();
+	private Map<Integer, Student> enrollmentNumberPerStudent = new HashMap<>();
 
 	public Course(String name, String teacher) {
 		super();
@@ -50,6 +54,7 @@ public class Course {
 
 	public void enroll(Student s) {
 		this.students.add(s);
+		this.enrollmentNumberPerStudent.put(s.getEnrollmentNumber(), s);
 	}
 
 	public Set<Student> getStudents() {
@@ -58,6 +63,12 @@ public class Course {
 	
 	public boolean isEnrolled(Student s) {
 		return this.students.contains(s);
+	}
+
+	public Student searchStudent(int enrollmentNumber) {
+		
+		return this.enrollmentNumberPerStudent.get(enrollmentNumber);
+		
 	}
 	
 	
