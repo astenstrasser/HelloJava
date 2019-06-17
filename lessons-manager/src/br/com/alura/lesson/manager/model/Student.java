@@ -8,7 +8,7 @@ public class Student {
 
 	public Student(String name, int enrollmentNumber, int id) {
 		if (name == null) {
-			throw new NullPointerException("Student Name must be given");
+			throw new NullPointerException("Student Name must not be null");
 		}
 		this.name = name;
 		this.enrollmentNumber = enrollmentNumber;
